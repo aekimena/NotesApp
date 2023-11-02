@@ -20,6 +20,7 @@ import {
 // import Search from './components/Search';
 import Main from './components/Main';
 import AddNote from './components/AddNote';
+import AddToDo from './components/AddToDo';
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
@@ -28,7 +29,8 @@ function App() {
   };
   return (
     // <Main lightMode={lightMode} handleDark={handleDark} />
-    <AddNote lightMode={lightMode} />
+    // <AddNote lightMode={lightMode} />
+    <AddToDo lightMode={lightMode} />
   );
 }
 
