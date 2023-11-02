@@ -61,7 +61,7 @@ const Home = ({handleDark, lightMode}) => {
   });
 
   return (
-    <>
+    <View style={{flex: 1}}>
       <View style={style.header}>
         <View style={style.headerInner}>
           <View>
@@ -189,7 +189,7 @@ const Home = ({handleDark, lightMode}) => {
           width: 80,
           height: 80,
           borderRadius: 50,
-          bottom: 120,
+          bottom: 80,
           right: 20,
           padding: 5,
           justifyContent: 'center',
@@ -197,7 +197,7 @@ const Home = ({handleDark, lightMode}) => {
         }}>
         <Icon name="plus" size={50} color="#fff"></Icon>
       </View>
-    </>
+    </View>
   );
 };
 
