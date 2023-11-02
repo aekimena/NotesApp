@@ -7,7 +7,7 @@ const Notes = ({lightMode}) => {
   return (
     <View
       style={{
-        flex: 1,
+        flex: 10,
         backgroundColor: lightMode ? '#f7fafc' : '#111111',
         paddingHorizontal: 15,
       }}>
@@ -67,7 +67,7 @@ const Notes = ({lightMode}) => {
           <View>
             <Text
               style={{
-                fontSize: 28,
+                fontSize: 25,
                 fontWeight: 'bold',
                 color: lightMode ? '#000' : '#f7fafc',
               }}>
