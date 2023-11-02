@@ -12,6 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import Home from './components/Home';
 import Notes from './components/Notes';
+import ToDos from './components/ToDos';
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
@@ -25,7 +26,8 @@ function App() {
         flex: 1,
       }}>
       {/* <Home handleDark={handleDark} lightMode={lightMode} /> */}
-      <Notes lightMode={lightMode} />
+      {/* <Notes lightMode={lightMode} /> */}
+      <ToDos lightMode={lightMode} />
       {/* <View
         style={
           {

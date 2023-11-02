@@ -48,7 +48,7 @@ const Home = ({handleDark, lightMode}) => {
       paddingHorizontal: 15,
     },
     homeSectionNoteBox: {
-      backgroundColor: lightMode ? '#d8d8d8' : '#444444',
+      backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
       width: itemWidth,
       height: 180,
       borderRadius: 15,
