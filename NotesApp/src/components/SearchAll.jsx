@@ -1,12 +1,23 @@
-import {View, Text, TextInput, ScrollView, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const SearchAll = ({lightMode}) => {
+const SearchAll = ({lightMode, navigation}) => {
   const [text, setText] = useState('');
   return (
     <SafeAreaView
-      style={{flex: 1, backgroundColor: '#f7fafc', paddingHorizontal: 15}}>
+      style={{
+        flex: 1,
+        backgroundColor: lightMode ? '#f7fafc' : '#111111',
+        paddingHorizontal: 15,
+      }}>
       <View
         style={{
           flexDirection: 'row',
@@ -16,9 +27,15 @@ const SearchAll = ({lightMode}) => {
           //   paddingHorizontal: 15,
           paddingTop: 20,
         }}>
-        <View>
-          <Icon name="arrow-left" size={30} color="#000" />
-        </View>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <View>
+            <Icon
+              name="arrow-left"
+              size={30}
+              color={lightMode ? '#000' : '#f7fafc'}
+            />
+          </View>
+        </TouchableOpacity>
 
         <View
           style={{

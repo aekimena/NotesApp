@@ -13,14 +13,15 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const Home = ({handleDark, lightMode}) => {
+const Home = ({handleDark, lightMode, navigation}) => {
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = screenWidth * 0.8;
 
   const style = StyleSheet.create({
     header: {
-      padding: 15,
-      paddingHorizontal: 10,
+      // padding: 15,
+      // paddingHorizontal: 10,
+      paddingVertical: 25,
       elevation: 4,
       shadowColor: '#000',
       backgroundColor: lightMode ? '#f7fafc' : '#111111',
@@ -28,11 +29,11 @@ const Home = ({handleDark, lightMode}) => {
     headerInner: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      padding: 10,
+      // padding: 10,
       alignItems: 'center',
     },
     homeSection: {
-      paddingHorizontal: 15,
+      // paddingHorizontal: 15,
       flexDirection: 'row',
       alignItems: 'center',
       gap: 8,
@@ -45,7 +46,7 @@ const Home = ({handleDark, lightMode}) => {
     homeSectionScrollViewHorizontal: {
       flexDirection: 'row',
       gap: 20,
-      paddingHorizontal: 15,
+      // paddingHorizontal: 15,
     },
     homeSectionNoteBox: {
       backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
@@ -61,7 +62,12 @@ const Home = ({handleDark, lightMode}) => {
   });
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: lightMode ? '#f7fafc' : '#111111',
+        paddingHorizontal: 15,
+      }}>
       <View style={style.header}>
         <View style={style.headerInner}>
           <View>
@@ -84,13 +90,15 @@ const Home = ({handleDark, lightMode}) => {
               NotesApp
             </Text>
           </View>
-          <View>
-            <Icon
-              name="magnifying-glass"
-              size={30}
-              color={lightMode ? '#000' : '#f7fafc'}
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchAll')}>
+            <View>
+              <Icon
+                name="magnifying-glass"
+                size={30}
+                color={lightMode ? '#000' : '#f7fafc'}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -182,21 +190,23 @@ const Home = ({handleDark, lightMode}) => {
           </ScrollView>
         </View>
       </ScrollView>
-      <View
-        style={{
-          position: 'absolute',
-          backgroundColor: '#81c784',
-          width: 80,
-          height: 80,
-          borderRadius: 50,
-          bottom: 80,
-          right: 20,
-          padding: 5,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Icon name="plus" size={50} color="#fff"></Icon>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate('AddNote')}>
+        <View
+          style={{
+            position: 'absolute',
+            backgroundColor: '#81c784',
+            width: 80,
+            height: 80,
+            borderRadius: 50,
+            bottom: 80,
+            right: 20,
+            padding: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Icon name="plus" size={50} color="#fff"></Icon>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

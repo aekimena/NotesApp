@@ -1,8 +1,15 @@
-import {View, Text, SafeAreaView, TextInput, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const AddToDo = ({lightMode}) => {
+const AddToDo = ({lightMode, navigation}) => {
   const [titleText, setTitleText] = useState('');
   const [toDoText, setToDoText] = useState('');
   return (
@@ -20,11 +27,13 @@ const AddToDo = ({lightMode}) => {
           marginTop: 20,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
-          <Icon
-            name="arrow-left"
-            size={30}
-            color={lightMode ? '#000' : '#f7fafc'}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon
+              name="arrow-left"
+              size={30}
+              color={lightMode ? '#000' : '#f7fafc'}
+            />
+          </TouchableOpacity>
           <Text
             style={{
               color: lightMode ? '#000' : '#f7fafc',

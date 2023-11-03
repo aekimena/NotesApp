@@ -1,8 +1,14 @@
-import {View, Text, SafeAreaView, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const AddNote = ({lightMode}) => {
+const AddNote = ({lightMode, navigation}) => {
   const [titleText, setTitleText] = useState('');
   const [noteText, setNoteText] = useState('');
   return (
@@ -20,20 +26,33 @@ const AddNote = ({lightMode}) => {
           marginTop: 20,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
-          <Icon name="arrow-left" size={30} color="#000" />
-          <Text style={{color: '#000', fontSize: 20, fontWeight: 'bold'}}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon
+              name="arrow-left"
+              size={30}
+              color={lightMode ? '#000' : '#f7fafc'}
+            />
+          </TouchableOpacity>
+
+          <Text
+            style={{
+              color: lightMode ? '#000' : '#f7fafc',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}>
             Notes
           </Text>
         </View>
-        <Icon name="check" size={30} color="#000" />
+
+        <Icon name="check" size={30} color={lightMode ? '#000' : '#f7fafc'} />
       </View>
       <View style={{marginTop: 20, flex: 1}}>
         <View>
           <TextInput
             style={{
-              backgroundColor: lightMode ? 'transparent' : '#444444',
+              backgroundColor: 'transparent',
               fontSize: 30,
-              fontWeight: 'bold',
+              fontWeight: '500',
               color: lightMode ? '#000' : '#f7fafc',
             }}
             multiline={true}
@@ -46,7 +65,7 @@ const AddNote = ({lightMode}) => {
         <View style={{flex: 1}}>
           <TextInput
             style={{
-              backgroundColor: lightMode ? 'transparent' : '#444444',
+              backgroundColor: 'transparent',
               fontSize: 22,
               //   fontWeight: 'bold',
               color: lightMode ? '#000' : '#f7fafc',

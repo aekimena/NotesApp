@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
+  TouchableOpacity,
   View,
 } from 'react-native';
 
@@ -17,8 +18,10 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 import Home from './Home';
 import Notes from './Notes';
 import ToDos from './ToDos';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+const MainStack = createNativeStackNavigator();
 
-const Main = ({lightMode, handleDark}) => {
+const Main = ({lightMode, handleDark, navigation}) => {
   return (
     <SafeAreaView
       style={{
@@ -26,7 +29,28 @@ const Main = ({lightMode, handleDark}) => {
         flex: 1,
         // position: 'relative',
       }}>
-      <Home handleDark={handleDark} lightMode={lightMode} />
+      {/* <Home
+        handleDark={handleDark}
+        lightMode={lightMode}
+        navigation={navigation}
+      /> */}
+      <MainStack.Navigator initialRouteName="Home">
+        <MainStack.Screen
+          name="Home"
+          component={Home}
+          options={{headerShown: false}}
+        />
+        <MainStack.Screen
+          name="Notes"
+          component={Notes}
+          options={{headerShown: false}}
+        />
+        <MainStack.Screen
+          name="ToDos"
+          component={ToDos}
+          options={{headerShown: false}}
+        />
+      </MainStack.Navigator>
       {/* <Notes lightMode={lightMode} /> */}
       {/* <ToDos lightMode={lightMode} /> */}
       {/* <View
@@ -63,58 +87,75 @@ const Main = ({lightMode, handleDark}) => {
 
               gap: 30,
             }}>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 6,
-              }}>
-              <Icon name="house" size={27} color="#81c784" />
-              <Text style={{fontSize: 17, color: '#81c784', fontWeight: '600'}}>
-                Home
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 6,
-              }}>
-              <Icon
-                name="book"
-                size={27}
-                color={lightMode ? '#111' : '#f7fafc'}
-              />
-              <Text
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+              <View
                 style={{
-                  fontSize: 17,
-                  color: lightMode ? '#111' : '#f7fafc',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 6,
+                }}>
+                <Icon
+                  name="house"
+                  size={27}
+                  color={lightMode ? '#111' : '#f7fafc'}
+                />
+                <Text
+                  style={{
+                    fontSize: 17,
+                    color: lightMode ? '#111' : '#f7fafc',
+                    fontWeight: '600',
+                  }}>
+                  Home
+                </Text>
+              </View>
+            </TouchableOpacity>
 
-                  fontWeight: '600',
-                }}>
-                Notes
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 6,
-              }}>
-              <Icon
-                name="list"
-                size={27}
-                color={lightMode ? '#111' : '#f7fafc'}
-              />
-              <Text
+            <TouchableOpacity onPress={() => navigation.navigate('Notes')}>
+              <View
                 style={{
-                  fontSize: 17,
-                  color: lightMode ? '#111' : '#f7fafc',
-                  fontWeight: '600',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 6,
                 }}>
-                To-dos
-              </Text>
-            </View>
+                <Icon
+                  name="book"
+                  size={27}
+                  color={lightMode ? '#111' : '#f7fafc'}
+                />
+                <Text
+                  style={{
+                    fontSize: 17,
+                    color: lightMode ? '#111' : '#f7fafc',
+
+                    fontWeight: '600',
+                  }}>
+                  Notes
+                </Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('ToDos')}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: 6,
+                }}>
+                <Icon
+                  name="list"
+                  size={27}
+                  color={lightMode ? '#111' : '#f7fafc'}
+                />
+                <Text
+                  style={{
+                    fontSize: 17,
+                    color: lightMode ? '#111' : '#f7fafc',
+                    fontWeight: '600',
+                  }}>
+                  To-dos
+                </Text>
+              </View>
+            </TouchableOpacity>
           </View>
           {/* </View> */}
         </View>

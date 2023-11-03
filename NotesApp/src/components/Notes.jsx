@@ -1,8 +1,14 @@
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const Notes = ({lightMode}) => {
+const Notes = ({lightMode, navigation}) => {
   const [text, setText] = useState('');
   return (
     <View
@@ -81,21 +87,23 @@ const Notes = ({lightMode}) => {
           </View>
         </View>
       </ScrollView>
-      <View
-        style={{
-          position: 'absolute',
-          backgroundColor: '#81c784',
-          width: 80,
-          height: 80,
-          borderRadius: 50,
-          bottom: 80,
-          right: 20,
-          padding: 5,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Icon name="plus" size={50} color="#fff"></Icon>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate('AddNote')}>
+        <View
+          style={{
+            position: 'absolute',
+            backgroundColor: '#81c784',
+            width: 80,
+            height: 80,
+            borderRadius: 50,
+            bottom: 80,
+            right: 20,
+            padding: 5,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Icon name="plus" size={50} color="#fff"></Icon>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
