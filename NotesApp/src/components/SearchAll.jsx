@@ -1,11 +1,12 @@
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import {View, Text, TextInput, ScrollView, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
-const Search = ({lightMode}) => {
+const SearchAll = ({lightMode}) => {
   const [text, setText] = useState('');
   return (
-    <View style={{flex: 10, backgroundColor: '#f7fafc', paddingHorizontal: 15}}>
+    <SafeAreaView
+      style={{flex: 1, backgroundColor: '#f7fafc', paddingHorizontal: 15}}>
       <View
         style={{
           flexDirection: 'row',
@@ -82,8 +83,8 @@ const Search = ({lightMode}) => {
           </View>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
-export default Search;
+export default SearchAll;

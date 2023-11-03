@@ -21,6 +21,7 @@ import {
 import Main from './components/Main';
 import AddNote from './components/AddNote';
 import AddToDo from './components/AddToDo';
+import SearchAll from './components/SearchAll';
 
 function App() {
   const [lightMode, setLightMode] = useState(true);
@@ -28,9 +29,12 @@ function App() {
     lightMode ? setLightMode(false) : setLightMode(true);
   };
   return (
-    // <Main lightMode={lightMode} handleDark={handleDark} />
-    // <AddNote lightMode={lightMode} />
-    <AddToDo lightMode={lightMode} />
+    <>
+      <Main lightMode={lightMode} handleDark={handleDark} />
+      {/* <AddNote lightMode={lightMode} /> */}
+      {/* <AddToDo lightMode={lightMode} /> */}
+      {/* <SearchAll lightMode={lightMode} /> */}
+    </>
   );
 }
 

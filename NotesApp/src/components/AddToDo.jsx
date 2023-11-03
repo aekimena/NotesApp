@@ -20,79 +20,80 @@ const AddToDo = ({lightMode}) => {
           marginTop: 20,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center', gap: 20}}>
-          <Icon name="arrow-left" size={30} color="#000" />
-          <Text style={{color: '#000', fontSize: 20, fontWeight: 'bold'}}>
+          <Icon
+            name="arrow-left"
+            size={30}
+            color={lightMode ? '#000' : '#f7fafc'}
+          />
+          <Text
+            style={{
+              color: lightMode ? '#000' : '#f7fafc',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}>
             To-Do
           </Text>
         </View>
-        <Icon name="check" size={30} color="#000" />
+        <Icon name="check" size={30} color={lightMode ? '#000' : '#f7fafc'} />
       </View>
-      <ScrollView contentContainerStyle={{marginTop: 20, flex: 1}}>
+      <ScrollView
+        contentContainerStyle={{
+          marginTop: 20,
+          flex: 1,
+          // backgroundColor: '#000',
+        }}>
         <View>
           <TextInput
             style={{
-              backgroundColor: lightMode ? 'transparent' : '#444444',
+              backgroundColor: 'transparent',
               fontSize: 30,
-              fontWeight: 'bold',
+              fontWeight: '500',
               color: lightMode ? '#000' : '#f7fafc',
               borderBottomColor: '#000',
             }}
             multiline={true}
             placeholder="Title"
-            placeholderTextColor={lightMode ? '#777777' : '#f7fafc'}
+            placeholderTextColor={lightMode ? '#000' : '#f7fafc'}
             onChangeText={newText => setTitleText(newText)}
             defaultValue={titleText}
           />
         </View>
-
-        <View style={{flex: 1}}>
-          {/* <View style={{marginTop: 20}}>
-            <Text>this is the added to-do</Text>
-          </View> */}
-          <View
-            style={{
-              //   alignItems: 'center',
-              justifyContent: 'flex-end',
-              flex: 1,
-              paddingVertical: 10,
-              elevation: 10,
-              shadowColor: '#000',
-              backgroundColor: '#f7fafc',
-              //   gap: 25,
-              //   paddingHorizontal: 15,
-              //   paddingTop: 20,
-            }}>
-            {/* <View
+        <View style={{marginTop: 20}}>
+          <View style={{flexDirection: 'row', alignItems: 'center', gap: 10}}>
+            <Icon name="circle" size={27} color="#81c784" />
+            <Text
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                // marginTop: 20,
-                // flex: 1,
-              }}> */}
-            <TextInput
-              style={{
-                height: 55,
-                backgroundColor: lightMode
-                  ? 'rgba(216, 216, 216, 0.5)'
-                  : '#444444',
-                borderRadius: 20,
-                padding: 15,
-
-                // paddingHorizontal: 45,
-                fontSize: 22,
-                position: 'relative',
-                // flex: 1,
                 color: lightMode ? '#000' : '#f7fafc',
-              }}
-              placeholder="Add new item"
-              placeholderTextColor={lightMode ? '#777777' : '#f7fafc'}
-              onChangeText={newText => setToDoText(newText)}
-              defaultValue={toDoText}
-            />
-            {/* </View> */}
+                fontSize: 22,
+                fontWeight: 500,
+                textDecorationLine: 'line-through',
+              }}>
+              First To-do
+            </Text>
           </View>
         </View>
       </ScrollView>
+      <View>
+        <TextInput
+          style={{
+            height: 55,
+            backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
+            borderRadius: 20,
+            // paddingVertical: 15,
+            // paddingHorizontal: 45,
+            padding: 15,
+            marginVertical: 10,
+            fontSize: 20,
+            // position: 'relative',
+            // flex: 1,
+            color: lightMode ? '#000' : '#f7fafc',
+          }}
+          placeholder="Add New Item..."
+          placeholderTextColor={lightMode ? '#777777' : '#f7fafc'}
+          onChangeText={newText => setToDoText(newText)}
+          defaultValue={toDoText}
+        />
+      </View>
     </SafeAreaView>
   );
 };

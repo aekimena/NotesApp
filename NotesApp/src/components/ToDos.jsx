@@ -7,7 +7,7 @@ const ToDos = ({lightMode}) => {
   return (
     <View
       style={{
-        flex: 10,
+        flex: 1,
         backgroundColor: lightMode ? '#f7fafc' : '#111111',
         paddingHorizontal: 15,
       }}>

@@ -15,9 +15,8 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import Home from './Home';
-// import Notes from './Notes';
-// import ToDos from './ToDos';
-import Search from './Search';
+import Notes from './Notes';
+import ToDos from './ToDos';
 
 const Main = ({lightMode, handleDark}) => {
   return (
@@ -25,11 +24,11 @@ const Main = ({lightMode, handleDark}) => {
       style={{
         backgroundColor: lightMode ? '#f7fafc' : '#111111',
         flex: 1,
+        // position: 'relative',
       }}>
-      {/* <Home handleDark={handleDark} lightMode={lightMode} /> */}
+      <Home handleDark={handleDark} lightMode={lightMode} />
       {/* <Notes lightMode={lightMode} /> */}
       {/* <ToDos lightMode={lightMode} /> */}
-      <Search lightMode={lightMode} />
       {/* <View
       style={
         {
@@ -39,13 +38,14 @@ const Main = ({lightMode, handleDark}) => {
         }
       }> */}
       {/* <View> */}
+
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{flex: 1}}>
+        behavior={Platform.OS === 'ios' ? 'padding' : null}
+        style={{backgroundColor: 'green', position: 'relative'}}>
         <View
           style={{
-            flex: 1,
-            justifyContent: 'flex-end',
+            // flex: 1,
+            // justifyContent: 'flex-end',
             // flexDirection: 'column-reverse',
             // elevation: 50,
             // shadowColor: '#000',
@@ -117,6 +117,25 @@ const Main = ({lightMode, handleDark}) => {
             </View>
           </View>
           {/* </View> */}
+        </View>
+        <View
+          style={{
+            backgroundColor: '#f7fafc',
+            bottom: 0,
+            left: 0,
+            height: 0,
+            width: '100%',
+            position: 'absolute',
+
+            zIndex: 20,
+            borderTopLeftRadius: 25,
+            borderTopRightRadius: 25,
+            elevation: 5,
+            shadowColor: '#000',
+            shadowOffset: {width: 0, height: 4},
+            shadowOpacity: 0.5,
+          }}>
+          <View style={{padding: 30}}></View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
