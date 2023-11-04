@@ -11,12 +11,13 @@ import Modal from 'react-native-modal';
 import UserContext from '../context/UserContext';
 
 const ModalComp = ({navigation}) => {
-  const {lightMode, isModalVisible, toggleModal} = useContext(UserContext);
+  const {lightMode, isModalVisible, toggleModal, setModalVisible} =
+    useContext(UserContext);
   const Separator = () => (
     <View
       style={{
         marginVertical: 8,
-        borderBottomColor: '#737373',
+        borderBottomColor: lightMode ? '#737373' : '#a0a0a0',
         borderBottomWidth: StyleSheet.hairlineWidth,
       }}
     />
@@ -29,11 +30,14 @@ const ModalComp = ({navigation}) => {
     <View>
       <Modal
         isVisible={isModalVisible}
+        onBackdropPress={toggleModal}
         animationIn={'bounceInUp'}
         animationInTiming={500}
         animationOutTiming={100}
         backdropTransitionInTiming={400}
-        backdropTransitionOutTiming={80}>
+        backdropTransitionOutTiming={80}
+        backdropOpacity={0.8}
+        on>
         <View
           style={{
             flex: 1,
@@ -41,7 +45,7 @@ const ModalComp = ({navigation}) => {
           }}>
           <View
             style={{
-              backgroundColor: lightMode ? '#f7fafc' : '#111111',
+              backgroundColor: lightMode ? '#f7fafc' : '#111',
 
               height: 'auto',
 
@@ -52,13 +56,19 @@ const ModalComp = ({navigation}) => {
             }}>
             <TouchableOpacity onPress={() => handleAddNote('AddNote')}>
               <View style={{marginVertical: 13}}>
-                <Text style={{color: '#000', fontSize: 22}}>Notes</Text>
+                <Text
+                  style={{color: lightMode ? '#000' : '#f7fafc', fontSize: 22}}>
+                  Notes
+                </Text>
               </View>
             </TouchableOpacity>
             <Separator />
             <TouchableOpacity onPress={() => handleAddNote('AddToDo')}>
               <View style={{marginVertical: 13}}>
-                <Text style={{color: '#000', fontSize: 22}}>To-Do</Text>
+                <Text
+                  style={{color: lightMode ? '#000' : '#f7fafc', fontSize: 22}}>
+                  To-Do
+                </Text>
               </View>
             </TouchableOpacity>
             <Separator />

@@ -58,7 +58,7 @@ const Home = ({navigation}) => {
       paddingHorizontal: 15,
     },
     homeSectionNoteBox: {
-      backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
+      backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#333',
       width: itemWidth,
       height: 170,
       borderRadius: 15,
