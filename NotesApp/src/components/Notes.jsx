@@ -5,11 +5,13 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import UserContext from '../context/UserContext';
 
-const Notes = ({lightMode, navigation}) => {
+const Notes = ({navigation}) => {
   const [text, setText] = useState('');
+  const {lightMode} = useContext(UserContext);
   return (
     <View
       style={{

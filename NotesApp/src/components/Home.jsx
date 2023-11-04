@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   Dimensions,
   SafeAreaView,
@@ -12,10 +12,12 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import UserContext from '../context/UserContext';
 
-const Home = ({handleDark, lightMode, navigation}) => {
+const Home = ({navigation}) => {
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = screenWidth * 0.8;
+  const {lightMode, handleDark} = useContext(UserContext);
 
   const style = StyleSheet.create({
     header: {
@@ -29,11 +31,12 @@ const Home = ({handleDark, lightMode, navigation}) => {
     headerInner: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      // padding: 10,
+      paddingVertical: 20,
+      paddingHorizontal: 15,
       alignItems: 'center',
     },
     homeSection: {
-      // paddingHorizontal: 15,
+      paddingHorizontal: 15,
       flexDirection: 'row',
       alignItems: 'center',
       gap: 8,
@@ -46,7 +49,7 @@ const Home = ({handleDark, lightMode, navigation}) => {
     homeSectionScrollViewHorizontal: {
       flexDirection: 'row',
       gap: 20,
-      // paddingHorizontal: 15,
+      paddingHorizontal: 15,
     },
     homeSectionNoteBox: {
       backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
@@ -66,41 +69,41 @@ const Home = ({handleDark, lightMode, navigation}) => {
       style={{
         flex: 1,
         backgroundColor: lightMode ? '#f7fafc' : '#111111',
-        paddingHorizontal: 15,
+        // paddingHorizontal: 15,
       }}>
-      <View style={style.header}>
-        <View style={style.headerInner}>
-          <View>
-            <TouchableOpacity onPress={handleDark} underlayColor={'#000'}>
-              <Icon
-                name={lightMode ? 'moon' : 'sun'}
-                solid={false}
-                size={30}
-                color={lightMode ? '#000' : '#f7fafc'}
-              />
-            </TouchableOpacity>
-          </View>
-          <View>
-            <Text
-              style={{
-                fontSize: 24,
-                color: lightMode ? '#000' : '#f7fafc',
-                fontWeight: '600',
-              }}>
-              NotesApp
-            </Text>
-          </View>
-          <TouchableOpacity onPress={() => navigation.navigate('SearchAll')}>
-            <View>
-              <Icon
-                name="magnifying-glass"
-                size={30}
-                color={lightMode ? '#000' : '#f7fafc'}
-              />
-            </View>
+      {/* <View style={style.header}> */}
+      <View style={style.headerInner}>
+        <View>
+          <TouchableOpacity onPress={handleDark} underlayColor={'#000'}>
+            <Icon
+              name={lightMode ? 'moon' : 'sun'}
+              solid={false}
+              size={30}
+              color={lightMode ? '#000' : '#f7fafc'}
+            />
           </TouchableOpacity>
         </View>
+        <View>
+          <Text
+            style={{
+              fontSize: 24,
+              color: lightMode ? '#000' : '#f7fafc',
+              fontWeight: '600',
+            }}>
+            NotesApp
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('SearchAll')}>
+          <View>
+            <Icon
+              name="magnifying-glass"
+              size={30}
+              color={lightMode ? '#000' : '#f7fafc'}
+            />
+          </View>
+        </TouchableOpacity>
       </View>
+      {/* </View> */}
 
       <ScrollView
         showsVerticalScrollIndicator={false}

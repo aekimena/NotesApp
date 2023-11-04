@@ -5,12 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import UserContext from '../context/UserContext';
 
-const AddNote = ({lightMode, navigation}) => {
+const AddNote = ({navigation}) => {
   const [titleText, setTitleText] = useState('');
   const [noteText, setNoteText] = useState('');
+  const {lightMode} = useContext(UserContext);
   return (
     <SafeAreaView
       style={{

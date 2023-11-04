@@ -24,43 +24,48 @@ import Main from './components/Main';
 import AddNote from './components/AddNote';
 import AddToDo from './components/AddToDo';
 import SearchAll from './components/SearchAll';
+import UserContextProvider from './context/UserContextProvider';
+import UserContext from './context/UserContext';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [lightMode, setLightMode] = useState(false);
-  const handleDark = () => {
-    lightMode ? setLightMode(false) : setLightMode(true);
-  };
+  // const [lightMode, setLightMode] = useState(false);
+  // const handleDark = () => {
+  //   lightMode ? setLightMode(false) : setLightMode(true);
+  // };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="AddNote"
-          component={AddNote}
-          options={{title: 'New Note', headerShown: false}}
-        />
-        <Stack.Screen
-          name="SearchAll"
-          component={SearchAll}
-          options={{title: 'Search', headerShown: false}}
-        />
-        <Stack.Screen
-          name="AddToDo"
-          component={AddToDo}
-          options={{title: 'ToDo', headerShown: false}}
-        />
-        {/* <Main lightMode={lightMode} handleDark={handleDark} /> */}
-        {/* <AddNote lightMode={lightMode} /> */}
-        {/* <AddToDo lightMode={lightMode} />
+    <UserContextProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="AddNote"
+            component={AddNote}
+            options={{title: 'New Note', headerShown: false}}
+          />
+          <Stack.Screen
+            name="SearchAll"
+            component={SearchAll}
+            options={{title: 'Search', headerShown: false}}
+          />
+          <Stack.Screen
+            name="AddToDo"
+            component={AddToDo}
+            options={{title: 'ToDo', headerShown: false}}
+          />
+          {/* <Main lightMode={lightMode} handleDark={handleDark} /> */}
+          {/* <AddNote lightMode={lightMode} /> */}
+          {/* <AddToDo lightMode={lightMode} />
         <SearchAll lightMode={lightMode} /> */}
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </UserContextProvider>
   );
 }
 

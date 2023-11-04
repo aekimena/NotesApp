@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   TouchableWithoutFeedback,
@@ -19,9 +19,11 @@ import Home from './Home';
 import Notes from './Notes';
 import ToDos from './ToDos';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import UserContext from '../context/UserContext';
 const MainStack = createNativeStackNavigator();
 
-const Main = ({lightMode, handleDark, navigation}) => {
+const Main = ({navigation}) => {
+  const {lightMode} = useContext(UserContext);
   return (
     <SafeAreaView
       style={{

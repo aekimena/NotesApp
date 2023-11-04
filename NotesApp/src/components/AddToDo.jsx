@@ -6,12 +6,14 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import UserContext from '../context/UserContext';
 
-const AddToDo = ({lightMode, navigation}) => {
+const AddToDo = ({navigation}) => {
   const [titleText, setTitleText] = useState('');
   const [toDoText, setToDoText] = useState('');
+  const {lightMode} = useContext(UserContext);
   return (
     <SafeAreaView
       style={{
