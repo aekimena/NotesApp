@@ -68,7 +68,7 @@ const Notes = ({navigation}) => {
             borderRadius: 20,
             height: 'auto',
             justifyContent: 'space-evenly',
-            gap: 5,
+            gap: 10,
             paddingHorizontal: 10,
             paddingVertical: 17,
           }}>
@@ -85,6 +85,11 @@ const Notes = ({navigation}) => {
           <View>
             <Text style={{color: lightMode ? '#000' : '#f7fafc', fontSize: 20}}>
               my first note
+            </Text>
+          </View>
+          <View>
+            <Text style={{fontSize: 18, color: lightMode ? '#000' : '#f7fafc'}}>
+              Time
             </Text>
           </View>
         </View>

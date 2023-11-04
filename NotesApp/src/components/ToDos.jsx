@@ -68,7 +68,7 @@ const ToDos = ({navigation}) => {
             borderRadius: 20,
             height: 'auto',
             justifyContent: 'space-evenly',
-            gap: 5,
+            gap: 10,
             paddingHorizontal: 10,
             paddingVertical: 17,
           }}>
@@ -88,7 +88,7 @@ const ToDos = ({navigation}) => {
               alignItems: 'center',
               gap: 8,
             }}>
-            <Icon name="circle-check" size={25} color="#81c784" solid={true} />
+            <Icon name="circle-check" size={21} color="#81c784" solid={true} />
             <Text
               style={{
                 color: lightMode ? '#000' : '#f7fafc',
@@ -96,6 +96,11 @@ const ToDos = ({navigation}) => {
                 textDecorationLine: 'line-through',
               }}>
               my first note
+            </Text>
+          </View>
+          <View>
+            <Text style={{fontSize: 18, color: lightMode ? '#000' : '#f7fafc'}}>
+              Time
             </Text>
           </View>
         </View>

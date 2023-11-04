@@ -5,6 +5,7 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
+  Dimensions,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -18,6 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 import Home from './Home';
 import Notes from './Notes';
 import ToDos from './ToDos';
+import ModalComp from '../modals/addNoteOrToDoModalComp';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import UserContext from '../context/UserContext';
 const MainStack = createNativeStackNavigator();
@@ -29,6 +31,7 @@ const Main = ({navigation}) => {
       style={{
         backgroundColor: lightMode ? '#f7fafc' : '#111111',
         flex: 1,
+
         // position: 'relative',
       }}>
       {/* <Home
@@ -67,7 +70,11 @@ const Main = ({navigation}) => {
 
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
-        style={{backgroundColor: 'green', position: 'relative'}}>
+        style={{
+          backgroundColor: 'green',
+          // position: 'relative',
+          // flex: 1,
+        }}>
         <View
           style={{
             // flex: 1,
@@ -160,25 +167,6 @@ const Main = ({navigation}) => {
             </TouchableOpacity>
           </View>
           {/* </View> */}
-        </View>
-        <View
-          style={{
-            backgroundColor: '#f7fafc',
-            bottom: 0,
-            left: 0,
-            height: 0,
-            width: '100%',
-            position: 'absolute',
-
-            zIndex: 20,
-            borderTopLeftRadius: 25,
-            borderTopRightRadius: 25,
-            elevation: 5,
-            shadowColor: '#000',
-            shadowOffset: {width: 0, height: 4},
-            shadowOpacity: 0.5,
-          }}>
-          <View style={{padding: 30}}></View>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>

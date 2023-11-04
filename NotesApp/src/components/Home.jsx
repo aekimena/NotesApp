@@ -13,11 +13,17 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import UserContext from '../context/UserContext';
+import ModalComp from '../modals/addNoteOrToDoModalComp';
 
 const Home = ({navigation}) => {
   const screenWidth = Dimensions.get('window').width;
   const itemWidth = screenWidth * 0.8;
-  const {lightMode, handleDark} = useContext(UserContext);
+  const {
+    lightMode,
+    handleDark,
+
+    toggleModal,
+  } = useContext(UserContext);
 
   const style = StyleSheet.create({
     header: {
@@ -54,15 +60,19 @@ const Home = ({navigation}) => {
     homeSectionNoteBox: {
       backgroundColor: lightMode ? 'rgba(216, 216, 216, 0.5)' : '#444444',
       width: itemWidth,
-      height: 180,
+      height: 170,
       borderRadius: 15,
       flexDirection: 'column',
-      // justifyContent: 'space-evenly',
+      justifyContent: 'space-evenly',
       // alignItems: 'center',
       padding: 10,
       gap: 5,
     },
   });
+
+  const handleAddBtn = () => {
+    toggleModal();
+  };
 
   return (
     <View
@@ -119,7 +129,7 @@ const Home = ({navigation}) => {
               color={lightMode ? '#000' : '#81C784'}
               solid={false}
             />
-            <Text style={style.homeSectionTitle}>Recent Work</Text>
+            <Text style={style.homeSectionTitle}>Recently Saved</Text>
           </View>
           <ScrollView
             horizontal={true}
@@ -127,12 +137,12 @@ const Home = ({navigation}) => {
             contentContainerStyle={style.homeSectionScrollViewHorizontal}>
             {/* <View> */}
             <View style={style.homeSectionNoteBox}>
-              {/* <View>
+              <View>
                 <Text
                   style={{
                     fontSize: 30,
                     fontWeight: 'bold',
-                    color: lightMode ? '#444' : '#f7fafc',
+                    color: lightMode ? '#000' : '#f7fafc',
                   }}>
                   Title
                 </Text>
@@ -142,13 +152,59 @@ const Home = ({navigation}) => {
                   style={{
                     fontSize: 25,
                     fontWeight: '500',
-                    color: lightMode ? '#444' : '#f7fafc',
+                    color: lightMode ? '#000' : '#f7fafc',
                   }}>
                   This is my first note!
                 </Text>
-              </View> */}
+              </View>
+              <View>
+                <Text
+                  style={{fontSize: 20, color: lightMode ? '#000' : '#f7fafc'}}>
+                  Time
+                </Text>
+              </View>
             </View>
-            <View style={style.homeSectionNoteBox}></View>
+            <View style={style.homeSectionNoteBox}>
+              {/*  */}
+              <View>
+                <Text
+                  style={{
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                    color: lightMode ? '#000' : '#f7fafc',
+                  }}>
+                  Title (1/5)
+                </Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 8,
+                }}>
+                <Icon
+                  name="circle-check"
+                  size={25}
+                  color="#81c784"
+                  solid={true}
+                />
+                <Text
+                  style={{
+                    color: lightMode ? '#000' : '#f7fafc',
+                    fontSize: 25,
+                    textDecorationLine: 'line-through',
+                  }}>
+                  my first note
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{fontSize: 20, color: lightMode ? '#000' : '#f7fafc'}}>
+                  Time
+                </Text>
+              </View>
+              {/*  */}
+            </View>
             {/* </View> */}
           </ScrollView>
         </View>
@@ -193,7 +249,7 @@ const Home = ({navigation}) => {
           </ScrollView>
         </View>
       </ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate('AddNote')}>
+      <TouchableOpacity onPress={handleAddBtn}>
         <View
           style={{
             position: 'absolute',
@@ -207,9 +263,10 @@ const Home = ({navigation}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Icon name="plus" size={50} color="#fff"></Icon>
+          <Icon name="plus" size={50} color="#f7fafc"></Icon>
         </View>
       </TouchableOpacity>
+      <ModalComp navigation={navigation} />
     </View>
   );
 };
