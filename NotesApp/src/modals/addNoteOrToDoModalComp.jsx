@@ -42,6 +42,8 @@ const ModalComp = ({navigation}) => {
           style={{
             flex: 1,
             justifyContent: 'flex-end',
+
+            width: '100%',
           }}>
           <View
             style={{
@@ -49,7 +51,7 @@ const ModalComp = ({navigation}) => {
 
               height: 'auto',
 
-              width: '100%',
+              // width: '100%',
 
               borderRadius: 10,
               padding: 20,

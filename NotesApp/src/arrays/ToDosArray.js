@@ -5,6 +5,7 @@ export const toDosArray = [
   {
     id: generateUniqueToDosId(),
     title: '',
+    type: 'todo',
     time: '',
     favourite: false,
     important: false,

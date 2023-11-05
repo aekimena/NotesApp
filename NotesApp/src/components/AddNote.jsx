@@ -4,15 +4,47 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import UserContext from '../context/UserContext';
+// import {notesArray} from '../arrays/NotesArray';
+// import {generateUniqueNotesId} from '../arrays/IdGenerator';
+// export let notesArray = [];
 
 const AddNote = ({navigation}) => {
   const [titleText, setTitleText] = useState('');
   const [noteText, setNoteText] = useState('');
-  const {lightMode} = useContext(UserContext);
+  const {lightMode, notesArray, setNotesArray, handleSaveNote} =
+    useContext(UserContext);
+  // const {lightMode} = useContext(UserContext);
+
+  // const handleSaveNote = () => {
+  //   const newNote = {
+  //     id: generateUniqueNotesId(),
+  //     title: titleText,
+  //     description: noteText,
+  //     type: 'note',
+  //     time: '',
+  //     favourite: false,
+  //     important: false,
+  //   };
+  //   // setNotesArray(notesArray.push(newNote));
+  //   setNotesArray([...notesArray, newNote]);
+
+  //   // notesArray.unshift(notesArray.splice(notesArray.indexOf(newNote), 1)[0]),
+  //   navigation.goBack();
+  //   console.log(notesArray);
+  // };
+
+  const handleSaveNote2 = () => {
+    handleSaveNote(titleText, noteText);
+    navigation.goBack();
+    console.log(notesArray);
+
+    // notesArray.unshift(notesArray.splice(notesArray.indexOf(newNote), 1)[0]),
+  };
   return (
     <SafeAreaView
       style={{
@@ -46,7 +78,9 @@ const AddNote = ({navigation}) => {
           </Text>
         </View>
 
-        <Icon name="check" size={30} color={lightMode ? '#000' : '#f7fafc'} />
+        <Pressable onPress={handleSaveNote2}>
+          <Icon name="check" size={30} color={lightMode ? '#000' : '#f7fafc'} />
+        </Pressable>
       </View>
       <View style={{marginTop: 20, flex: 1}}>
         <View>

@@ -1,4 +1,5 @@
-import {notesArray} from './NotesArray';
+// import {notesArray} from './NotesArray';
+
 import {toDosArray} from './ToDosArray';
 
 function generateId() {
@@ -78,7 +79,7 @@ function generateId() {
   return id;
 }
 
-export function generateUniqueNotesId() {
+export function generateUniqueNotesId(notesArray) {
   let idExists = notesArray.some(obj => obj.id === generateId);
   if (idExists) {
     let uniqueId;
