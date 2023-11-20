@@ -14,10 +14,22 @@ import UserContext from '../context/UserContext';
 // export let notesArray = [];
 
 const AddNote = ({navigation}) => {
-  const [titleText, setTitleText] = useState('');
-  const [noteText, setNoteText] = useState('');
-  const {lightMode, notesArray, setNotesArray, handleSaveNote} =
-    useContext(UserContext);
+  // const [titleText, setTitleText] = useState('');
+  // const [noteText, setNoteText] = useState('');
+  const {
+    lightMode,
+    notesArray,
+    setNotesArray,
+    handleSaveNote,
+    noteText,
+    setNoteText,
+    inputFilled,
+    setInputFilled,
+    handleEditNote,
+    titleText,
+    noteId,
+    setTitleText,
+  } = useContext(UserContext);
   // const {lightMode} = useContext(UserContext);
 
   // const handleSaveNote = () => {
@@ -39,7 +51,9 @@ const AddNote = ({navigation}) => {
   // };
 
   const handleSaveNote2 = () => {
-    handleSaveNote(titleText, noteText);
+    inputFilled
+      ? handleEditNote(noteId, titleText, noteText)
+      : handleSaveNote(titleText, noteText);
     navigation.goBack();
     console.log(notesArray);
 

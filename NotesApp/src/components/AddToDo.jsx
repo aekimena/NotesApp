@@ -5,6 +5,8 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  noteId,
+  setNoteId,
 } from 'react-native';
 import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';

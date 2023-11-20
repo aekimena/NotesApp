@@ -4,6 +4,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import React, {useContext, useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome6';
@@ -14,7 +15,33 @@ import UserContext from '../context/UserContext';
 const Notes = ({navigation}) => {
   const [text, setText] = useState('');
   // const {lightMode} = useContext(UserContext);
-  const {lightMode, notesArray, setNotesArray} = useContext(UserContext);
+  const {
+    lightMode,
+    notesArray,
+    setNotesArray,
+    noteId,
+    setNoteId,
+    titleText,
+    setTitleText,
+    noteText,
+    setNoteText,
+    inputFilled,
+    setInputFilled,
+  } = useContext(UserContext);
+
+  const showNote = item => {
+    setTitleText(item.title);
+    setNoteText(item.description);
+    setNoteId(item.id);
+    setInputFilled(true);
+    navigation.navigate('AddNote');
+  };
+  const setNoteNull = () => {
+    setInputFilled(false);
+    setTitleText('');
+    setNoteText('');
+    navigation.navigate('AddNote');
+  };
   return (
     <View
       style={{
@@ -72,7 +99,7 @@ const Notes = ({navigation}) => {
         contentContainerStyle={{paddingVertical: 20, gap: 20}}>
         {notesArray?.length > 0 &&
           notesArray.map(note => (
-            <View
+            <Pressable
               style={{
                 backgroundColor: lightMode
                   ? 'rgba(216, 216, 216, 0.5)'
@@ -84,7 +111,8 @@ const Notes = ({navigation}) => {
                 paddingHorizontal: 10,
                 paddingVertical: 17,
               }}
-              key={note.id}>
+              key={note.id}
+              onPress={() => showNote(note)}>
               <View>
                 <Text
                   style={{
@@ -118,7 +146,7 @@ const Notes = ({navigation}) => {
                   {note.time}
                 </Text>
               </View>
-            </View>
+            </Pressable>
           ))}
         {/*  */}
         {/* <View
@@ -154,7 +182,7 @@ const Notes = ({navigation}) => {
         </View> */}
         {/*  */}
       </ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate('AddNote')}>
+      <TouchableOpacity onPress={() => setNoteNull()}>
         <View
           style={{
             position: 'absolute',
