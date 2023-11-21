@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import UserContext from './UserContext';
 import {generateUniqueNotesId} from '../arrays/IdGenerator';
 import {correctTime} from '../arrays/timeUpdate';
@@ -17,6 +17,13 @@ const UserContextProvider = ({children}) => {
   const [titleText, setTitleText] = useState('');
   const [noteText, setNoteText] = useState('');
   const [inputFilled, setInputFilled] = useState(false);
+  const [selectAllMode, setSelectAllMode] = useState(false);
+  const [allSelected, setAllSelected] = useState(false);
+  const [filtered, setFiltered] = useState(notesArray);
+
+  useEffect(() => {
+    setFiltered(notesArray.filter(item => item.selected === true));
+  }, [notesArray]);
 
   const handleSaveNote = (titleText, noteText) => {
     const updatedTime = new Date();
@@ -25,8 +32,9 @@ const UserContextProvider = ({children}) => {
       title: titleText,
       description: noteText,
       type: 'note',
+      selected: false,
       time: correctTime(updatedTime),
-      favourite: false,
+      favorite: false,
       important: false,
     };
     setNotesArray([newNote, ...notesArray]);
@@ -59,6 +67,45 @@ const UserContextProvider = ({children}) => {
       : setNotesArray(notesArray.filter(item => item.id !== id));
   };
 
+  const handleFavorite = (id, boolean) => {
+    setNotesArray(prevData =>
+      prevData.map(item =>
+        item.id === id
+          ? {
+              ...item,
+              favorite: boolean,
+            }
+          : item,
+      ),
+    );
+  };
+
+  const handleImportant = (id, boolean) => {
+    setNotesArray(prevData =>
+      prevData.map(item =>
+        item.id === id
+          ? {
+              ...item,
+              important: boolean,
+            }
+          : item,
+      ),
+    );
+  };
+
+  const handleSelected = (id, boolean) => {
+    setNotesArray(prevData =>
+      prevData.map(item =>
+        item.id === id
+          ? {
+              ...item,
+              selected: boolean,
+            }
+          : item,
+      ),
+    );
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -79,6 +126,15 @@ const UserContextProvider = ({children}) => {
         setNoteText,
         inputFilled,
         setInputFilled,
+        handleFavorite,
+        handleImportant,
+        selectAllMode,
+        setSelectAllMode,
+        handleSelected,
+        allSelected,
+        filtered,
+        setFiltered,
+        setAllSelected,
       }}>
       {children}
     </UserContext.Provider>
